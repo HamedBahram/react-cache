@@ -22,11 +22,13 @@ export default function Todos({ todos }: { todos: Todo[] }) {
 
   async function action(data: FormData) {
     const title = data.get('title')
+    const userId = '65eb34aa095b216ff65fa33c'
     if (typeof title !== 'string' || !title) return
 
     const newTodo = {
       id: crypto.randomUUID(),
       title,
+      userId,
       isCompleted: false,
       createdAt: new Date(),
       updatedAt: new Date()
@@ -34,7 +36,7 @@ export default function Todos({ todos }: { todos: Todo[] }) {
 
     formRef.current?.reset()
     addOptimisticTodo(newTodo)
-    const result = await createTodoAction(title)
+    const result = await createTodoAction(title, userId)
 
     if (result?.error) {
       toast.error(result.error)

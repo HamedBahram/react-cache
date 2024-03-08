@@ -1,5 +1,10 @@
-import { getTodos } from '@/lib/todos'
+// import { getTodos } from '@/lib/todos'
 import Todos from '@/components/todos'
+import { getTodos } from '@/lib/todos'
+
+export async function generateMetadata() {
+  await getTodos()
+}
 
 export default async function Page() {
   const { todos = [] } = await getTodos()

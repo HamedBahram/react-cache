@@ -14,3 +14,7 @@ export function formatDate(date: Date) {
 
   return formatter.format(date)
 }
+
+export function delay(ms: number) {
+  return new Promise(resolve => setTimeout(resolve, ms))
+}
